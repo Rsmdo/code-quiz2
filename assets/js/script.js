@@ -43,3 +43,19 @@ const questions = [
         correct: 1,
     }
 ]
+//needed declarations 
+const questionPage = document.querySelector('#question')
+const currentTime = document.querySelector("#currentTime")
+const finalScores = document.querySelector("#final-score")
+//time left
+let secondsLeft = 75
+
+//for timer to start and change when button clicked 
+document
+    .querySelector('#startTimer')
+    .addEventListener('click', function() {
+        changePage('#question')
+        createQuestion(0)
+        secondsLeft = 75
+        currentTime.innerText = '75'
+    })

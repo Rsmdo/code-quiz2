@@ -10,7 +10,7 @@ main {
 .btn {
     cursor: pointer;
     display: block;
-    background-color: yellow;
+    background-color: black;
     padding: 4px 16px;
     font-size: 14px;
     color: white;
