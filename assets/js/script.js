@@ -114,3 +114,16 @@ function createQuestion(index) {
             })
         })
 }
+//show hightscores 
+//gets from local storage, splits and displays line by line 
+function showHighscoresPage() {
+    localStorage.getItem('highscores') || ''
+    const highscoresListEl = document.querySelector('#highscores-list')
+    const highscores = (localStorage.getItem('highscores') || '').split(',')
+    let elList = ''
+    for (let i = 1; i < highscores.length; i++) {
+        elList += '<div>' + i + '. ' + highscores[i] + '</div>'
+    }
+    changePage('#highscores')
+    highscoresListEl.innerHTML = elList
+}
