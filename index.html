@@ -4,9 +4,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
     <title>Code-Quiz</title>
 </head>
 <body>
-    
+    <!-- HS portion -->
+    <div class="header">
+        <button class="btn-link" id="view-highscores">View Your Highscores</button>
+        <div>
+          <span class="timer">Time:</span>
+          <span id="currentTime">75</span>
+        </div>
+      </div>
+  
+      <main>
+
+        <section id="start-prompt">
+          <h1>
+            <div class= "large-font">Welcome to Coding Quiz</div>
+          </h1>
+          <!-- java insert  -->
+          <section id="quizQuestions">
+            <p>You have a timelimit of 75seconds and every wrong answer deducts 15 seconds. You will have 5 questions all multiple choice. GoodLuck!
+            </p>
+          </section>
+
+          <button 
+            id="startTimer" 
+            class="btn"
+          >
+            Begin
+          </button>
+        </section>
+  
+            <!-- final dusplkay  -->
+        <section id="finial-prompt">
+          <h1>
+            <div class= "large-font">All Done!</div>
+          </h1>
+          <section>
+            <p>
+              Your final score is 
+              <span id="final-score"></span>
+            </p>
+          </section>
+          Enter initials: <input id="initials-input" />
+          <button class="btn" id="submit-score" style="display:inline;">
+            Submit
+          </button>
+        </section>
+  
+        <section id="highscores">
+          <h1>Highscores</h1>
+          <div id="highscores-list">
+          </div>
+          <button 
+            class="btn" 
+            id="highscores-go-home" 
+            style="display:inline;margin-right: 8px;"
+          >
+            Go Back
+          </button>
+          <button 
+            class="btn" 
+            id="highscores-clear" 
+            style="display:inline;"
+          >
+            Clear Highscores
+          </button>
+        </section>
+  
+        <section id="question">
+          <h2 id="question-text"></h2>
+          <div id="answers"></div>
+        </section>
+  
+        <section id="answer-result"></section>
+      </main>
+
+
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
