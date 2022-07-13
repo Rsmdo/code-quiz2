@@ -70,12 +70,6 @@ const pages = [
     document.querySelector('#highscores')
 ]
 //for timer to start and change when button clicked 
-document.querySelector('#startTimer').addEventListener('click', function() {
-        changePage('#question')
-        createQuestion(0)
-        secondsLeft = 75
-        currentTime.innerText = '75'
-    })
 
 function createQuestion(index) {
     document.querySelector('#question-text').innerText = questions[index].question
@@ -114,6 +108,15 @@ function createQuestion(index) {
             })
         })
 }
+//change the page to new set of questions each time 
+//usinh pages array
+function changePage(activePage) {
+    pages.forEach(function(page) {
+        page.style.display = 'none'
+    })
+    //display elements as block
+    document.querySelector(activePage).style.display = 'block'
+}
 //show hightscores 
 //gets from local storage, splits and displays line by line 
 function showHighscoresPage() {
@@ -126,4 +129,34 @@ function showHighscoresPage() {
     }
     changePage('#highscores')
     highscoresListEl.innerHTML = elList
+    
 }
+
+//this fucntion should take care of submit score to highscore page
+document.querySelector('#submit-score').addEventListener('click', function() {
+    const highscoresString = localStorage.getItem('highscores') || ''
+    const highscores = highscoresString.split(',')
+    highscores.push(
+        document.querySelector('#initials-input').value
+        + ' - '
+        + secondsLeft
+    )
+    localStorage.setItem('highscores', highscores.join(','))
+    showHighscoresPage()
+})
+//added to bottom after defining all functions 
+document.querySelector('#startTimer').addEventListener('click', function() {changePage('#question')
+    createQuestion(0)
+    secondsLeft = 75
+    currentTime.innerText = '75'
+})
+
+
+
+//when click view highscores should toggle the highscores function which displays from local storage 
+document.querySelector('#view-highscores').addEventListener('click', function() {showHighscoresPage()})
+//should allows users to go back to start page (no need for reload function)
+document.querySelector('#highscores-go-home').addEventListener('click', function() {changePage('#start-prompt')})
+//clears local storage oncluck 
+document.querySelector('#highscores-clear').addEventListener('click', function() {localStorage.removeItem('highscores'),showHighscoresPage()})
+
