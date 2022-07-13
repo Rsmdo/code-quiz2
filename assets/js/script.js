@@ -49,13 +49,32 @@ const currentTime = document.querySelector("#currentTime")
 const finalScores = document.querySelector("#final-score")
 //time left
 let secondsLeft = 75
-
+// function to update timer 
+function updateSecondsLeft() {
+    // decreases by 1 
+    secondsLeft = Math.max(0, secondsLeft - 1)
+    currentTime.textContent = secondsLeft
+    finalScores.textContent = secondsLeft
+}
+// setting the interval to 1000 which is 1 seconds
+setInterval(function() {
+    if (questionPage.style.display === 'block') {
+        updateSecondsLeft()
+    }
+}, 1000);
+//storeing the pages needed into one array so easier to toggle
+const pages = [
+    document.querySelector('#final-prompt'),
+    document.querySelector('#start-prompt'),
+    questionPage,
+    document.querySelector('#highscores')
+]
 //for timer to start and change when button clicked 
-document
-    .querySelector('#startTimer')
-    .addEventListener('click', function() {
+document.querySelector('#startTimer').addEventListener('click', function() {
         changePage('#question')
         createQuestion(0)
         secondsLeft = 75
         currentTime.innerText = '75'
     })
+
+
