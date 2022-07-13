@@ -77,4 +77,40 @@ document.querySelector('#startTimer').addEventListener('click', function() {
         currentTime.innerText = '75'
     })
 
-
+function createQuestion(index) {
+    document.querySelector('#question-text').innerText = questions[index].question
+    //select answers element to display 
+    const answers = document.querySelector('#answers')
+        //using map function to for new array creation for every element 
+    answers.innerHTML = questions[index].answers
+        .map(function(answer, i) {
+            const value = questions[index].correct === i
+            return '<button class="btn" value="' + value + '">'+ (i + 1) + '. ' + answer+ '</button>'
+        })
+        .join('')
+    document .querySelectorAll('#answers button')
+    //each cluck will display correct or incorrect 
+    //if incorrect then time is deducted
+    //questions will keep going aslong as there is questions in array 
+        .forEach(function(answerButton) {
+            answerButton.addEventListener('click', function(e) {
+                const resultEl = document.querySelector('#answer-result')
+                resultEl.style.display = 'block'
+                setTimeout(function() {
+                    resultEl.style.display = 'none'
+                }, 700)
+                if (e.target.value === 'true') {
+                    resultEl.innerText = 'Correct!'
+                } else {
+                    resultEl.innerText = 'Wrong!'
+                    secondsLeft -= 15
+                    updateSecondsLeft()
+                }
+                if (index < questions.length - 1) {
+                    createQuestion(index + 1)
+                } else {
+                    changePage('#final-prompt')
+                }
+            })
+        })
+}
